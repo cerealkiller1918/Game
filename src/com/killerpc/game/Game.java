@@ -51,8 +51,11 @@ public class Game extends Canvas implements Runnable {
 		for (int i = 0; i < numBall; i++) {
 			BallList.add(new Ball());
 		}
+		for (int i=0; i<BallList.size(); i++){
+			BallList.get(i).init();
+		}
 		for (int i = 0; i < BallList.size(); i++) {
-			BallList.get(i).setColor(rc.getColor());
+			BallList.get(i).setObjectColor(rc.getColor());
 		}
 		changeColor.setBallList(BallList);
 		addKeyListener(changeColor);
@@ -113,7 +116,7 @@ public class Game extends Canvas implements Runnable {
 	private void tick() {
 
 		for (int i = 0; i < BallList.size(); i++) {
-			BallList.get(i).thinkBall(getWidth(), getHeight());
+			BallList.get(i).tick();
 		}
 		ballCount = Integer.toString(BallList.size());
 	}
@@ -132,7 +135,7 @@ public class Game extends Canvas implements Runnable {
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 
 		for (int i = 0; i < BallList.size(); i++) {
-			BallList.get(i).paintBall(g);
+			BallList.get(i).render(g);
 		}
 
 		count.paint(g, Frames, Ticks, ballCount);

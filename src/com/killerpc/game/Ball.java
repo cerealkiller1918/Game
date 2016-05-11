@@ -1,63 +1,55 @@
 package com.killerpc.game;
-
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Toolkit;
-import java.util.Random;
 
-/**
- *
- * @author Justin Frasier
- */
 
-public class Ball {
-	private Random r = new Random();
-	private Toolkit tk = Toolkit.getDefaultToolkit();
-	private int ballSize = 80;
-	private int screenX;
-	private int screenY;
-	private int ballX = r.nextInt(tk.getScreenSize().width);
-	private int ballY = r.nextInt(tk.getScreenSize().height);
-	private boolean xright = this.r.nextBoolean();
-	private boolean yup = this.r.nextBoolean();
-	private int move = this.r.nextInt(4);
-	private Color color;
 
-	public void thinkBall(int screen_x, int screen_y) {
-		this.screenX = screen_x;
-		this.screenY = screen_y;
-		if (this.move == 0) {
-			this.move = this.r.nextInt(4);
-		}
-		if (this.ballX < this.screenX - 80 - this.move - 1 && this.xright) {
-			this.ballX += this.move;
-		} else {
-			this.xright = false;
-		}
-		if (this.ballX > this.move - 1 && !this.xright) {
-			this.ballX -= this.move;
-		} else {
-			this.xright = true;
-		}
-		if (this.ballY > this.move - 1 && !this.yup) {
-			this.ballY -= this.move;
-		} else {
-			this.yup = true;
-		}
-		if (this.ballY < this.screenY - 80 - this.move - 1 && this.yup) {
-			this.ballY += this.move;
-		} else {
-			this.yup = false;
-		}
+public class Ball extends GameObject {
+	
+	private RandomColor rc;
+	
+	@Override
+	public void init() {
+		this.object_x = random.nextInt(screenSize_X);
+		this.object_y = random.nextInt(screenSize_Y);
+		this.objectSize = 80;
+		this.moveSpeed = random.nextInt(4);
+		this.moveRight = random.nextBoolean();
+		this.moveUp = random.nextBoolean();
+		rc = new RandomColor();
+		this.color = rc.getColor();
 	}
 
-	public void paintBall(Graphics g) {
+
+	@Override
+	public void tick() {
+		
+		while (this.moveSpeed < 1){
+			this.moveSpeed = random.nextInt(4);}
+		
+		if(this.object_x < this.screenSize_X- 80 - this.moveSpeed && this.moveRight){
+			this.object_x += this.moveSpeed;
+		}else{ this.moveRight = false;}
+		if(this.object_x > this.moveSpeed -1 && !this.moveRight){
+			this.object_x -= this.moveSpeed;
+		}else{this.moveRight = true;}
+		if(this.object_y > this.moveSpeed -1 && !this.moveUp){
+			this.object_y -= this.moveSpeed;
+		}else{this.moveUp = true;}
+		if(this.object_y < this.screenSize_Y - 80 - this.moveSpeed -1 && this.moveUp){
+			this.object_y += this.moveSpeed;
+		}else{this.moveUp = false;}
+		
+	}
+
+	@Override
+	public void render(Graphics g) {
 		g.setColor(color);
-		g.fillOval(this.ballX, this.ballY, this.ballSize, this.ballSize);
+		g.fillOval(this.object_x, this.object_y, this.objectSize, this.objectSize);
+		
 	}
 
-	public void setColor(Color color) {
-		this.color = color;
-	}
+
+	
+	
 
 }

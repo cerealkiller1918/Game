@@ -22,17 +22,31 @@ public class ChangeColor implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			for (int i = 0; i < ballList.size(); i++) {
-				ballList.get(i).setColor(rc.getColor());
+				ballList.get(i).setObjectColor(rc.getColor());
 			}
 
-		} else if (e.getKeyCode() == KeyEvent.VK_W) {
-			int i = ballList.size();
-			ballList.add(new Ball());
-			ballList.get(i).setColor(rc.getColor());
-		} else if (e.getKeyCode() == KeyEvent.VK_E) {
+		} else if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {
+			for (int x=0; x<10; x++){
+				ballList.add(new Ball());
+				ballList.get(ballList.size()-1).init();
+				ballList.get(ballList.size()-1).setObjectColor(rc.getColor());
+			}
+		} else if (e.getKeyCode() == KeyEvent.VK_E || e.getKeyCode() == KeyEvent.VK_DOWN) {
 			if (!ballList.isEmpty()) {
-				int i = ballList.size() - 1;
-				ballList.remove(i);
+				for(int i=0; i <10; i++){
+					ballList.remove(ballList.size()-1);
+				}
+			}
+		}else if (e.getKeyCode()==KeyEvent.VK_Z){
+			if(ballList.size()>10){
+				while(ballList.size()>10){
+					ballList.remove(ballList.size()-1);
+				}
+			}else if(ballList.size()<10){
+				while(ballList.size()<10){
+					ballList.add(new Ball());
+					ballList.get(ballList.size()-1).setObjectColor(rc.getColor());
+				}
 			}
 		}
 
