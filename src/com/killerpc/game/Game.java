@@ -4,8 +4,6 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Random;
 import javax.swing.JFrame;
 
 /**
@@ -22,16 +20,13 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private Thread thread;
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-	private Random r = new Random();
-	private ArrayList<Ball> BallList = new ArrayList<>();
-	private RandomColor rc = new RandomColor();
-	private ChangeColor changeColor = new ChangeColor();
-	private ExitGame exitgame = new ExitGame();
+	private GameKeyListener GKL;
+	private GameMouseListener GML;
 	private JFrame jf;
 	private String Frames = "";
 	private String Ticks = "";
-	private String ballCount = "";
 	private Count count = new Count();
+	private Player player = new Player();
 
 	public void setJFrame(JFrame jf) {
 		this.jf = jf;
@@ -44,24 +39,15 @@ public class Game extends Canvas implements Runnable {
 	public synchronized void start() {
 		if (running)
 			return;
-		int numBall = r.nextInt(25);
-		while (numBall < 8) {
-			numBall = r.nextInt(25);
-		}
-		for (int i = 0; i < numBall; i++) {
-			BallList.add(new Ball());
-		}
-		for (int i=0; i<BallList.size(); i++){
-			BallList.get(i).init();
-		}
-		for (int i = 0; i < BallList.size(); i++) {
-			BallList.get(i).setObjectColor(rc.getColor());
-		}
-		changeColor.setBallList(BallList);
-		addKeyListener(changeColor);
-		exitgame.setGame(this);
-		addKeyListener(exitgame);
+		GML = new GameMouseListener(this, player);
+		GKL = new GameKeyListener(this, player);
+		player.init();
+		addMouseMotionListener(GML);
+		addMouseListener(GML);
+		addMouseWheelListener(GML);
+		addKeyListener(GKL);
 		running = true;
+		System.out.println("Started Game");
 		thread = new Thread(this);
 		thread.start();
 
@@ -72,6 +58,7 @@ public class Game extends Canvas implements Runnable {
 			return;
 		jf.setVisible(false);
 		jf.dispose();
+		System.out.println("Ended Game");
 		running = false;
 		thread.interrupt();
 		System.exit(1);
@@ -114,11 +101,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	private void tick() {
-
-		for (int i = 0; i < BallList.size(); i++) {
-			BallList.get(i).tick();
-		}
-		ballCount = Integer.toString(BallList.size());
+		player.tick();
 	}
 
 	private void render() {
@@ -133,12 +116,10 @@ public class Game extends Canvas implements Runnable {
 		//////////////////////////////////
 
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+		
+		player.render(g);
 
-		for (int i = 0; i < BallList.size(); i++) {
-			BallList.get(i).render(g);
-		}
-
-		count.paint(g, Frames, Ticks, ballCount);
+		count.paint(g, Frames, Ticks);
 		//////////////////////////////////
 		g.dispose();
 		bs.show();

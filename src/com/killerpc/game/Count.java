@@ -10,8 +10,8 @@ import java.awt.Graphics;
 
 public class Count {
 
-	public void paint(Graphics g, String frames, String ticks, String ball) {
+	public void paint(Graphics g, String frames, String ticks) {
 		g.setColor(Color.YELLOW);
-		g.drawString("FPS: " + frames + " TICKS: " + ticks + " Ball: " + ball, 40, 40);
+		g.drawString("FPS: " + frames + " TICKS: " + ticks, 40, 40);
 	}
 }

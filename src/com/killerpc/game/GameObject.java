@@ -2,7 +2,12 @@ package com.killerpc.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public abstract class GameObject {
@@ -10,13 +15,13 @@ public abstract class GameObject {
 	public abstract void init();
 	public abstract void tick();
 	public abstract void render(Graphics g);
-	public Toolkit toolkit = Toolkit.getDefaultToolkit();
+	private Toolkit toolkit = Toolkit.getDefaultToolkit();
 	public Random random = new Random();
-	public int screenSize_X = toolkit.getScreenSize().width;
-	public int screenSize_Y = toolkit.getScreenSize().height;
-	public Color color;
-	public boolean moveRight, moveUp;
-	public int object_x,object_y, moveSpeed, objectSize;
+	private int screenSize_X = toolkit.getScreenSize().width;
+	private int screenSize_Y = toolkit.getScreenSize().height;
+	private Color color;
+	private boolean moveRight, moveUp;
+	private int object_x,object_y, moveSpeed, objectSize;
 	
 	public void setObject_x(int object_x){
 		this.object_x = object_x;}
@@ -44,5 +49,30 @@ public abstract class GameObject {
 		this.moveSpeed = moveSpeed;}
 	public int getObjectMoveSpeed(){
 		return this.moveSpeed;}
+	public int getScreenSize_Y(){
+		return screenSize_Y;}
+	public int getScreenSize_X(){
+		return screenSize_X;}
+	public static BufferedImage ImageResize(BufferedImage img, int newW, int newH) { 
+	    Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+	    BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
 
+	    Graphics2D g2d = dimg.createGraphics();
+	    g2d.drawImage(tmp, 0, 0, null);
+	    g2d.dispose();
+
+	    return dimg;
+	} 
+	
+	public static BufferedImage RotateImage(BufferedImage img, double angle){
+		
+		AffineTransform tx = new AffineTransform();
+		
+		tx.rotate(angle, img.getWidth()/2, img.getHeight()/2);
+		
+		AffineTransformOp op = new AffineTransformOp(tx, AffineTransform.TYPE_GENERAL_ROTATION);
+		
+		
+		return op.filter(img, null);
+	}
 }
