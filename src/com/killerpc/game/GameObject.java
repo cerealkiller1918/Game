@@ -1,6 +1,5 @@
 package com.killerpc.game;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -19,7 +18,6 @@ public abstract class GameObject {
 	public Random random = new Random();
 	private int screenSize_X = toolkit.getScreenSize().width;
 	private int screenSize_Y = toolkit.getScreenSize().height;
-	private Color color;
 	private boolean moveRight, moveUp;
 	private int object_x,object_y, moveSpeed, objectSize;
 	
@@ -35,8 +33,6 @@ public abstract class GameObject {
 		this.objectSize = objectSize;}
 	public int getObjectSize(){
 		return this.objectSize;}
-	public void setObjectColor(Color color){
-		this.color = color;}
 	public void setObjectMoveRight(boolean moveRight){
 		this.moveRight = moveRight;}
 	public boolean getObjectMoveRight(){
