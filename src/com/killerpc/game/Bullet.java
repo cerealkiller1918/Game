@@ -6,7 +6,7 @@ public class Bullet extends GameObject{
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -18,9 +18,8 @@ public class Bullet extends GameObject{
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+		
 		
 	}
-	
 
 }
