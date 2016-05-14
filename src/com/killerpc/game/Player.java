@@ -31,7 +31,7 @@ public class Player extends GameObject{
 		if(getObjectMoveUp()){
 			img = playerMove;
 			if(getObject_y() > 0)
-			setObject_y(getObject_y()-5);
+			setObject_y(getObject_y()-2);
 		}else{
 			img = player;
 			if(getObject_y() < getScreenSize_Y()-80)
