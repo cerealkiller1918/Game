@@ -7,11 +7,13 @@ public class GameKeyListener implements KeyListener{
 
 	private Game game;
 	private Player player;
+	private Controller cont;
 	
-	public GameKeyListener(Game game, Player player) {
+	public GameKeyListener(Game game, Player player, Controller cont) {
 		
 		this.game = game;	
 		this.player = player;
+		this.cont = cont;
 	}
 
 	@Override
@@ -33,6 +35,8 @@ public class GameKeyListener implements KeyListener{
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
 			player.setObject_x(player.getObject_x()+5);
+		}else if(e.getKeyCode() == KeyEvent.VK_SPACE){
+			cont.AddBullet();
 		}
 		
 		
