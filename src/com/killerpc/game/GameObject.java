@@ -9,6 +9,11 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
+/**
+*
+* @author Justin Frasier
+*/
+
 public abstract class GameObject {
 	
 	//  abstract methods

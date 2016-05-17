@@ -6,6 +6,11 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
+/**
+*
+* @author Justin Frasier
+*/
+
 public class GameMouseListener implements MouseMotionListener, MouseListener, MouseWheelListener{
 	
 	Game game;

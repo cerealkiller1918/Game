@@ -4,8 +4,12 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
+
+/**
+*
+* @author Justin Frasier
+*/
 
 public class Bullet extends GameObject{
 	
@@ -19,8 +23,6 @@ public class Bullet extends GameObject{
 		} catch(IOException e){
 			e.printStackTrace();
 		}
-		setObject_x(getScreenSize_X()/2);
-		setObject_y(getScreenSize_Y()-20);
 		img = ImageResize(bullet, 10/2, 40/2);
 	}
 

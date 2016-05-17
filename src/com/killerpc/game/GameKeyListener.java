@@ -3,6 +3,11 @@ package com.killerpc.game;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+*
+* @author Justin Frasier
+*/
+
 public class GameKeyListener implements KeyListener{
 
 	private Game game;
