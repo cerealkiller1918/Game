@@ -7,36 +7,36 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
-*
-* @author Justin Frasier
-*/
+ *
+ * @author Justin Frasier
+ */
 
-public class Bullet extends GameObject{
-	
+public class Bullet extends GameObject {
+
 	private BufferedImage bullet, img;
 
 	@Override
 	public void init() {
-		
-		try{
+
+		try {
 			bullet = ImageIO.read(new File("images/bullet.png"));
-		} catch(IOException e){
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		img = ImageResize(bullet, 10/2, 40/2);
+		img = ImageResize(bullet, 10 / 2, 40 / 2);
 	}
 
 	@Override
 	public void tick() {
-		if(getObject_y()>0)
-			setObject_y(getObject_y()-2);
-		
+		if (getObject_y() > 0)
+			setObject_y(getObject_y() - 2);
+
 	}
 
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(img, getObject_x(), getObject_y(), null);
-		
+
 	}
 
 }

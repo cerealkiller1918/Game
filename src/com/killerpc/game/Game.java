@@ -40,7 +40,7 @@ public class Game extends Canvas implements Runnable {
 	public synchronized void start() {
 		if (running)
 			return;
-		
+
 		GML = new GameMouseListener(this, player);
 		GKL = new GameKeyListener(this, player, controller);
 		player.init();
@@ -58,7 +58,7 @@ public class Game extends Canvas implements Runnable {
 	public synchronized void stop() {
 		if (running)
 			return;
-		
+
 		jf.setVisible(false);
 		jf.dispose();
 		System.out.println("Ended Game");
@@ -94,7 +94,8 @@ public class Game extends Canvas implements Runnable {
 				timer += 1000;
 				Frames = Integer.toString(frames);
 				Ticks = Integer.toString(updates);
-				System.out.println("Ticks " + updates + " |FPS " + frames+" |Bullets "+ controller.AmountOfBullets());
+				System.out
+						.println("Ticks " + updates + " |FPS " + frames + " |Bullets " + controller.AmountOfBullets());
 				updates = 0;
 				frames = 0;
 			}
@@ -103,7 +104,7 @@ public class Game extends Canvas implements Runnable {
 		stop();
 	}
 
-	private void tick() {   
+	private void tick() {
 		player.tick();
 		controller.tick();
 	}
@@ -120,12 +121,11 @@ public class Game extends Canvas implements Runnable {
 		//////////////////////////////////
 
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
-		
+
 		controller.render(g);
 		player.render(g);
-		
 
-		count.paint(g, Frames, Ticks,Integer.toString(controller.AmountOfBulletLeft()) ,getWidth(), getHeight());
+		count.paint(g, Frames, Ticks, Integer.toString(controller.AmountOfBulletLeft()), getWidth(), getHeight());
 		//////////////////////////////////
 		g.dispose();
 		bs.show();

@@ -11,7 +11,7 @@ import com.killerpc.game.Player;
 public class GameObjectTest {
 
 	GameObject game;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		game = new Player();
@@ -19,7 +19,7 @@ public class GameObjectTest {
 
 	@After
 	public void tearDown() throws Exception {
-	
+
 	}
 
 	@Test
@@ -37,7 +37,7 @@ public class GameObjectTest {
 	@Test
 	public void testGetObject_x() {
 		game.setObject_x(10);
-		assertEquals(10,game.getObject_x());
+		assertEquals(10, game.getObject_x());
 	}
 
 	@Test
@@ -93,8 +93,5 @@ public class GameObjectTest {
 		game.setObjectMoveSpeed(67);
 		assertEquals(67, game.getObjectMoveSpeed());
 	}
-
-
-	
 
 }
