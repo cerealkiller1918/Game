@@ -97,7 +97,7 @@ public class Game extends Canvas implements Runnable {
 				Frames = Integer.toString(frames);
 				Ticks = Integer.toString(updates);
 				System.out
-						.println("Ticks " + updates + " |FPS " + frames + " |Bullets " + controller.AmountOfBullets());
+						.println("Ticks " + updates + " | FPS " + frames + " | Bullets " + controller.AmountOfBullets());
 				updates = 0;
 				frames = 0;
 			}
