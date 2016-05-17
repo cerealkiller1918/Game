@@ -27,7 +27,8 @@ public class Game extends Canvas implements Runnable {
 	private String Ticks = "";
 	private Count count = new Count();
 	private Player player = new Player();
-	private Controller controller = new Controller(player);
+	private BulletController controller = new BulletController(player);
+	private Enemy enemy = new Enemy();
 
 	public void setJFrame(JFrame jf) {
 		this.jf = jf;
@@ -44,6 +45,7 @@ public class Game extends Canvas implements Runnable {
 		GML = new GameMouseListener(this, player);
 		GKL = new GameKeyListener(this, player, controller);
 		player.init();
+		enemy.init();
 		addMouseMotionListener(GML);
 		addMouseListener(GML);
 		addMouseWheelListener(GML);
@@ -124,6 +126,7 @@ public class Game extends Canvas implements Runnable {
 
 		controller.render(g);
 		player.render(g);
+		enemy.render(g);
 
 		count.paint(g, Frames, Ticks, Integer.toString(controller.AmountOfBulletLeft()), getWidth(), getHeight());
 		//////////////////////////////////

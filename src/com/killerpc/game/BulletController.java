@@ -8,12 +8,12 @@ import java.util.ArrayList;
  * @author Justin Frasier
  */
 
-public class Controller {
+public class BulletController {
 
 	private ArrayList<Bullet> bulletList;
 	private Player player;
 
-	public Controller(Player player) {
+	public BulletController(Player player) {
 		bulletList = new ArrayList<Bullet>();
 		this.player = player;
 	}

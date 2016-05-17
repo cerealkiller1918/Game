@@ -12,9 +12,9 @@ public class GameKeyListener implements KeyListener {
 
 	private Game game;
 	private Player player;
-	private Controller cont;
+	private BulletController cont;
 
-	public GameKeyListener(Game game, Player player, Controller cont) {
+	public GameKeyListener(Game game, Player player, BulletController cont) {
 
 		this.game = game;
 		this.player = player;
